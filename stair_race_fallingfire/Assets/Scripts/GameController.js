@@ -23,8 +23,6 @@ var timeStart: float;
 function Start () {
 	result.text = "";
 	timeText.text = "Press any button to start racing!";
-	Instantiate(fallingfire1, Vector2(0, 16.6), Quaternion.identity);
-	Instantiate(fallingfire2, Vector2(0, 16.6), Quaternion.identity);
 }
 
 function Update () {
@@ -35,6 +33,8 @@ function Update () {
 			player2.startGame();
 			timeCount = 0.0;
 			timeStart = Time.time;
+			Instantiate(fallingfire1, Vector2(0, 16.6), Quaternion.identity);
+			Instantiate(fallingfire2, Vector2(0, 16.6), Quaternion.identity);
 			stage = 2;
 		}
 	}

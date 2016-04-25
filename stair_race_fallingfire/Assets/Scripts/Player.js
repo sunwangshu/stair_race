@@ -41,6 +41,7 @@ function Update () {
 		// jump
 		if (Input.GetKeyDown(jump)) {
 			if (!isJumping) {
+				transform.position.x += 0.5 * stepx;
 				transform.position.y += 3 * stepy;
 				jumpTime = Time.time;
 				isJumping = true;
@@ -48,6 +49,7 @@ function Update () {
 		}
 		if (isJumping) {
 			if (Time.time - jumpTime >= 0.5) {
+				transform.position.x -= 0.5 * stepx;
 				transform.position.y -= 3 * stepy;
 				isJumping = false;
 			}
