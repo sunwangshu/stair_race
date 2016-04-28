@@ -12,7 +12,7 @@ var key2Once: boolean = false;
 var jump: KeyCode;
 var jumpTime: float;
 var isJumping: boolean = false;
-//var fallingfire: GameObject;
+var fallingfire: GameObject;
 
 var stepx: float = 0.35;
 var stepy: float = 0.35;
@@ -41,16 +41,16 @@ function Update () {
 		// jump
 		if (Input.GetKeyDown(jump)) {
 			if (!isJumping) {
-				transform.position.x += 0.5 * stepx;
-				transform.position.y += 3 * stepy;
+				transform.position.x += 0 * stepx;
+				transform.position.y += 4 * stepy;
 				jumpTime = Time.time;
 				isJumping = true;
 			}
 		}
 		if (isJumping) {
-			if (Time.time - jumpTime >= 0.5) {
-				transform.position.x -= 0.5 * stepx;
-				transform.position.y -= 3 * stepy;
+			if (Time.time - jumpTime >= 0.7) {
+				transform.position.x -= 0 * stepx;
+				transform.position.y -= 4 * stepy;
 				isJumping = false;
 			}
 		}
@@ -61,12 +61,14 @@ function Update () {
 function OnCollisionEnter2D (coll: Collision2D ) {
 	Debug.Log("enter");
 	if (coll.gameObject.tag == "Respawn") {
-		Debug.Log("respawn");
 		Destroy(coll.gameObject);
-		Debug.Log("Not transforming");
 		transform.position.x -= 5 * stepx;
 		transform.position.y -= 5 * stepy;
-		Debug.Log("Transforming");
+	}
+	else if (coll.gameObject.tag == "Trick") {
+		Debug.Log("trick");
+		Instantiate(fallingfire, Vector2(0, 16.6), Quaternion.identity);
+		Destroy(coll.gameObject);
 	}
 }
 

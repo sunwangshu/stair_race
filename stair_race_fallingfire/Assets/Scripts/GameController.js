@@ -12,8 +12,6 @@ var stage: int = 1;		//1: gameplay; 2: end game;
 
 var player1: Player;
 var player2: Player;
-public var fallingfire1: GameObject;
-public var fallingfire2: GameObject;
 
 var result: UI.Text;	// result
 var timeText: UI.Text;	// result
@@ -23,6 +21,11 @@ var timeStart: float;
 function Start () {
 	result.text = "";
 	timeText.text = "Press any button to start racing!";
+//	// testing jump
+//	player1.transform.position.x = -12.6;
+//	player1.transform.position.y = 4;
+//	player2.transform.position.x = 12.6;
+//	player2.transform.position.y = 4;
 }
 
 function Update () {
@@ -33,8 +36,8 @@ function Update () {
 			player2.startGame();
 			timeCount = 0.0;
 			timeStart = Time.time;
-			Instantiate(fallingfire1, Vector2(0, 16.6), Quaternion.identity);
-			Instantiate(fallingfire2, Vector2(0, 16.6), Quaternion.identity);
+//			Instantiate(fallingfire1, Vector2(0, 16.6), Quaternion.identity);
+//			Instantiate(fallingfire2, Vector2(0, 16.6), Quaternion.identity);
 			stage = 2;
 		}
 	}
