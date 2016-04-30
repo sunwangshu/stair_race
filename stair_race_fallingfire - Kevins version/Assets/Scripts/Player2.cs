@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player1 : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
     //[SerializeField] private Texture[] textures;
     [HideInInspector] public bool jump = false;
-    public float moveForce = 10f;
-    public float maxSpeed = 10f;
-    public float jumpForce = 300f;
+    public float moveForce2 = 10f;
+    public float maxSpeed2 = 10f;
+    public float jumpForce2 = 300f;
 
-    public bool grounded;
+    public bool grounded2;
 
     private Rigidbody2D rb;
     
@@ -21,23 +21,23 @@ public class Player1 : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Player1Up") && grounded)
+        if (Input.GetButtonDown("Player2Up") && grounded2)
         {
-            rb.AddForce(new Vector2(0f, jumpForce));
-            grounded = false;
+            rb.AddForce(new Vector2(0f, jumpForce2));
+            grounded2 = false;
         }
     }
 
     void FixedUpdate()
     {
-        float h = Input.GetAxis("Player1Right");
-        if (h * rb.velocity.x < maxSpeed)
+        float h = Input.GetAxis("Player2Right");
+        if (h * rb.velocity.x < maxSpeed2)
         {
-            rb.AddForce(Vector2.right * h * moveForce);
+            rb.AddForce(Vector2.right * h * moveForce2);
         }
-        if (Mathf.Abs(rb.velocity.x) > maxSpeed)
+        if (Mathf.Abs(rb.velocity.x) > maxSpeed2)
         {
-            rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed2, rb.velocity.y);
         }
     }
 
@@ -45,7 +45,7 @@ public class Player1 : MonoBehaviour
     {
         if (col.gameObject.tag == "Stairs")
         {
-            grounded = true;
+            grounded2 = true;
         }
     }
 
