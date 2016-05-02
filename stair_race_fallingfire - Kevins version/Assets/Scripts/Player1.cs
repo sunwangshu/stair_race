@@ -41,7 +41,7 @@ public class Player1 : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Stairs")
         {
