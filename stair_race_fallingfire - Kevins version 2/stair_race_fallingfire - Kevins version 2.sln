@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{821B0FB1-504A-A661-89DE-32618BE2A492}") = "stair_race_fallingfire - Kevins version 2", "Assembly-CSharp.csproj", "{C86E9037-2664-E096-345C-B3DF3816B179}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stair_race_fallingfire - Kevins version 2.CSharp", "stair_race_fallingfire - Kevins version 2.CSharp.csproj", "{6C9733FE-6D85-5FBD-3D76-E405ABE04C56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C86E9037-2664-E096-345C-B3DF3816B179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C86E9037-2664-E096-345C-B3DF3816B179}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C86E9037-2664-E096-345C-B3DF3816B179}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C86E9037-2664-E096-345C-B3DF3816B179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C9733FE-6D85-5FBD-3D76-E405ABE04C56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C9733FE-6D85-5FBD-3D76-E405ABE04C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C9733FE-6D85-5FBD-3D76-E405ABE04C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C9733FE-6D85-5FBD-3D76-E405ABE04C56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

@@ -5,9 +5,9 @@ public class Player2 : MonoBehaviour
 {
     //[SerializeField] private Texture[] textures;
     [HideInInspector] public bool jump = false;
-    public float moveForce2 = 10f;
+    public float moveForce2 = 30f;
     public float maxSpeed2 = 10f;
-    public float jumpForce2 = 300f;
+    public float jumpForce2 = 390f;
 	public GameObject stairblock; 
 
     public bool grounded2;
