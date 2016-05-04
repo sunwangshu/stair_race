@@ -13,11 +13,13 @@ public class Player2 : MonoBehaviour
     public bool grounded2;
 
     private Rigidbody2D rb;
-    
-    
+
+    private TextManager textManager;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        textManager = GameObject.Find("Canvas").GetComponent<TextManager>();
     }
 
     void Update()
@@ -34,6 +36,14 @@ public class Player2 : MonoBehaviour
 			//GameObject stairblock = GameObject.Find ("StairBlock");
 			Instantiate(stairblock, new Vector3(x + 10, y + 20, 0), Quaternion.Euler(new Vector3(0, 0, 40)));	
 		}
+        if (rb.transform.position.x > 196.1 && rb.transform.position.y < 194.4)
+        {
+            if (textManager.state == 1)
+            {
+                textManager.state = 3;
+                Debug.Log("END~");
+            }
+        }
     }
 
     void FixedUpdate()

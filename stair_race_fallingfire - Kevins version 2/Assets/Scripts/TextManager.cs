@@ -6,7 +6,6 @@ public class TextManager : MonoBehaviour {
 
     public int state;
 
-    public int timerStart = 10;
     private float timerFloat;
     private float timerInt;
 
@@ -38,22 +37,18 @@ public class TextManager : MonoBehaviour {
             gameOver1Text.text = "";
             gameOver1Text.text = "";
         }
-        //gameplay
+        //timer
         if(state == 1)
         {
             timerFloat += 1 * Time.deltaTime;
             timerInt = Mathf.Floor(timerFloat);
             titleText.text = "";
             instructionsText.text = "";
-            timerText.text = "TIME: " + (timerStart - timerInt).ToString();
+            timerText.text = "TIME: " + timerInt.ToString();
             gameOver1Text.text = "";
             gameOver2Text.text = "";
-            if (timerStart - timerInt < 0)
-            {
-                state = 2;
-            }
         }
-        //joystick wins
+        //player1 wins
         if(state == 2)
         {
             timerFloat = 0;
@@ -64,7 +59,7 @@ public class TextManager : MonoBehaviour {
             gameOver2Text.text = "";
             StartCoroutine(OriginalState());
         }
-        //kinect wins
+        //player2 wins
 	    if (state == 3)
         {
             timerFloat = 0;
