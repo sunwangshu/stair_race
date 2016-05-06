@@ -15,14 +15,20 @@ public class TextManager : MonoBehaviour {
     public Text gameOver1Text;
     public Text gameOver2Text;
 
+    public Player1 player1;
+    public Player2 player2;
+
+    private float winTimer;
+
 
     // Use this for initialization
     void Start () {	    
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        print(state);
+        //print(state);
         if (state == 0 && Input.anyKeyDown)
         {
             state = 1;
@@ -44,9 +50,17 @@ public class TextManager : MonoBehaviour {
             timerInt = Mathf.Floor(timerFloat);
             titleText.text = "";
             instructionsText.text = "";
-            timerText.text = "TIME: " + timerInt.ToString();
+            //timerText.text = "TIME: " + timerInt.ToString();
             gameOver1Text.text = "";
             gameOver2Text.text = "";
+            if(player1.transform.position.x > 196.1)
+            {
+                state = 2;
+            }
+            if(player2.transform.position.x > 196.1)
+            {
+                state = 3;
+            }
         }
         //player1 wins
         if(state == 2)
@@ -58,6 +72,11 @@ public class TextManager : MonoBehaviour {
             gameOver1Text.text = "PLAYER 1 WINS";
             gameOver2Text.text = "";
             StartCoroutine(OriginalState());
+            winTimer += 1 * Time.deltaTime;
+                if(winTimer > 4)
+            {
+                state = 0;
+            }
         }
         //player2 wins
 	    if (state == 3)
@@ -69,6 +88,11 @@ public class TextManager : MonoBehaviour {
             gameOver1Text.text = "";
             gameOver2Text.text = "PLAYER 2 WINS";
             StartCoroutine(OriginalState());
+            winTimer += 1 * Time.deltaTime;
+            if (winTimer > 4)
+            {
+                state = 0;
+            }
         }
         if (state == 4)
         {

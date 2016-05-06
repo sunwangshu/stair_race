@@ -4,6 +4,8 @@ using System.Collections;
 public class bullet : MonoBehaviour {
 	private Rigidbody2D rb;
 
+    private float timerFloat;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -12,6 +14,11 @@ public class bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        timerFloat += 1 * Time.deltaTime;
+        if(timerFloat > 4)
+        {
+            Destroy(gameObject);
+        }
 	
 	}
 

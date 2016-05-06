@@ -14,13 +14,17 @@ public class Player1 : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private TextManager textManager; 
+    private TextManager textManager;
+
+    private float bulletTimer;
+    private bool canFire;
     
     
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         textManager = GameObject.Find("Canvas").GetComponent<TextManager>();
+        canFire = true;
     }
 
     void Update()
@@ -30,21 +34,25 @@ public class Player1 : MonoBehaviour
             rb.AddForce(new Vector2(0f, jumpForce));
             grounded = false;
         }
-		if (Input.GetButtonDown("Player1Fire")) {
-			GameObject player2 = GameObject.Find("Player2");
-			float x = player2.transform.position.x;
-			float y = player2.transform.position.y;
-			//GameObject stairblock = GameObject.Find ("StairBlock");
-			Instantiate(stairblock, new Vector3(x + 10, y + 20, 0), Quaternion.Euler(new Vector3(0, 0, 40)));
-		}
-        if (rb.transform.position.x > 196.1 && rb.transform.position.y < 194.4)
-        {
-            if (textManager.state == 1)
-            {
-                textManager.state = 2;
-                Debug.Log("END~");
-            }
+        if (Input.GetButtonDown("Player1Fire") && canFire == true) {
+                GameObject player2 = GameObject.Find("Player2");
+                float x = player2.transform.position.x;
+                float y = player2.transform.position.y;
+                //GameObject stairblock = GameObject.Find ("StairBlock");
+                Instantiate(stairblock, new Vector3(x + 10, y + 20, 0), Quaternion.Euler(new Vector3(0, 0, 40)));
+                bulletTimer = 0;
+                canFire = false;
         }
+        if (bulletTimer > .75)
+        {
+            canFire = true;
+        }
+        bulletTimer += 1 * Time.deltaTime;
+
+       /* if (Input.GetButtonDown("Submit") && (textManager.state == 2 || textManager.state == 3))
+            { 
+            textManager.state = 0;
+        }*/
     }
 
     void FixedUpdate()

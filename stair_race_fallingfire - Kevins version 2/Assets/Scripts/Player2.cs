@@ -16,6 +16,9 @@ public class Player2 : MonoBehaviour
 
     private TextManager textManager;
 
+    private float bulletTimer;
+    private bool canFire;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,22 +32,22 @@ public class Player2 : MonoBehaviour
             rb.AddForce(new Vector2(0f, jumpForce2));
             grounded2 = false;
         }
-		if (Input.GetButtonDown("Player2Fire")) {
+		if (Input.GetButtonDown("Player2Fire") && canFire == true) {
 			GameObject player1 = GameObject.Find("Player1");
 			float x = player1.transform.position.x;
 			float y = player1.transform.position.y;
 			//GameObject stairblock = GameObject.Find ("StairBlock");
-			Instantiate(stairblock, new Vector3(x + 10, y + 20, 0), Quaternion.Euler(new Vector3(0, 0, 40)));	
+			Instantiate(stairblock, new Vector3(x + 10, y + 20, 0), Quaternion.Euler(new Vector3(0, 0, 40)));
+            bulletTimer = 0;
+            canFire = false;
 		}
-        if (rb.transform.position.x > 196.1 && rb.transform.position.y < 194.4)
+        if (bulletTimer > .75)
         {
-            if (textManager.state == 1)
-            {
-                textManager.state = 3;
-                Debug.Log("END~");
-            }
+            canFire = true;
         }
+        bulletTimer += 1 * Time.deltaTime;
     }
+    
 
     void FixedUpdate()
     {
