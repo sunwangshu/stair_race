@@ -1,17 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class TextManager : MonoBehaviour {
+public class MainManager : MonoBehaviour {
 
     public int state;
 
     private float timerFloat;
     private float timerInt;
 
-    public Text titleText;
-    public Text instructionsText;
-    public Text timerText;
     public Text gameOver1Text;
     public Text gameOver2Text;
 
@@ -28,83 +26,52 @@ public class TextManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //print(state);
-        if (state == 0 && Input.anyKeyDown)
-        {
-            state = 1;
-        }
-        //title screen
-        if (state == 0)
-        {
-            timerFloat = 0;
-            titleText.text = "STAIR BRAWL";
-            instructionsText.text = "Press to begin.";
-            timerText.text = "";
-            gameOver1Text.text = "";
-            gameOver1Text.text = "";
-        }
-        //timer
-        if(state == 1)
-        {
-            timerFloat += 1 * Time.deltaTime;
-            timerInt = Mathf.Floor(timerFloat);
-            titleText.text = "";
-            instructionsText.text = "";
-            //timerText.text = "TIME: " + timerInt.ToString();
-            gameOver1Text.text = "";
-            gameOver2Text.text = "";
             if(player1.transform.position.x > 196.1)
             {
-                state = 2;
+                state = 1;
             }
             if(player2.transform.position.x > 196.1)
             {
-                state = 3;
+                state = 2;
             }
-        }
+        
         //player1 wins
-        if(state == 2)
+        if(state == 1)
         {
             timerFloat = 0;
-            titleText.text = "";
-            timerText.text = "";
-            instructionsText.text = "";
             gameOver1Text.text = "PLAYER 1 WINS";
             gameOver2Text.text = "";
-            StartCoroutine(OriginalState());
+            //StartCoroutine(OriginalState());
             winTimer += 1 * Time.deltaTime;
                 if(winTimer > 4)
             {
-                state = 0;
+                SceneManager.LoadScene("Title");
             }
         }
         //player2 wins
-	    if (state == 3)
+	    if (state == 2)
         {
             timerFloat = 0;
-            titleText.text = "";
-            timerText.text = "";
-            instructionsText.text = "";
             gameOver1Text.text = "";
             gameOver2Text.text = "PLAYER 2 WINS";
-            StartCoroutine(OriginalState());
+            //StartCoroutine(OriginalState());
             winTimer += 1 * Time.deltaTime;
             if (winTimer > 4)
             {
-                state = 0;
+                SceneManager.LoadScene("Title");
             }
         }
-        if (state == 4)
+        if (state == 3)
         {
 
         }
 	}
 
-    public IEnumerator OriginalState()
+    /*public IEnumerator OriginalState()
     {
         yield return new WaitForSeconds(2f);
         state = 0;
         gameOver1Text.text = "";
         gameOver2Text.text = "";
-    }
+    }*/
 }

@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour {
     public Camera cam;
 
     public Transform player1, player2;
-    public float minSizeY = 5f;
+    public float minSizeY = 6f;
 
     void Start()
     {
