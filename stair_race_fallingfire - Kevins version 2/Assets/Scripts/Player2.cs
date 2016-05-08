@@ -6,7 +6,7 @@ public class Player2 : MonoBehaviour
     //[SerializeField] private Texture[] textures;
     [HideInInspector] public bool jump = false;
     public float moveForce2 = 30f;
-    public float maxSpeed2 = 10f;
+    public float maxSpeed2 = 80f;
     public float jumpForce2 = 390f;
 	public GameObject stairblock; 
 
@@ -15,9 +15,6 @@ public class Player2 : MonoBehaviour
     private Rigidbody2D rb;
 
     private TextManager textManager;
-
-    private float bulletTimer;
-    private bool canFire;
 
     void Awake()
     {
@@ -32,23 +29,28 @@ public class Player2 : MonoBehaviour
             rb.AddForce(new Vector2(0f, jumpForce2));
             grounded2 = false;
         }
-		if (Input.GetButtonDown("Player2Fire") && canFire == true) {
-			GameObject player1 = GameObject.Find("Player1");
-			float x = player1.transform.position.x;
-			float y = player1.transform.position.y;
-			//GameObject stairblock = GameObject.Find ("StairBlock");
-			Instantiate(stairblock, new Vector3(x + 10, y + 20, 0), Quaternion.Euler(new Vector3(0, 0, 40)));
-            bulletTimer = 0;
-            canFire = false;
-		}
-        if (bulletTimer > .75)
+        if (Input.GetButtonDown("Player2Fire"))
         {
-            canFire = true;
+            GameObject player1 = GameObject.Find("Player1");
+            float x = player1.transform.position.x;
+            float y = player1.transform.position.y;
+            Instantiate(stairblock, new Vector3(x + 10, y + 20, 0), Quaternion.Euler(new Vector3(0, 0, 40)));
         }
-        bulletTimer += 1 * Time.deltaTime;
+        if (Input.GetButtonDown("Player2Right"))
+        {
+            float h = Input.GetAxis("Player2Right") * 8;
+            if (h * rb.velocity.x < maxSpeed2)
+            {
+                rb.AddForce(Vector2.right * h * moveForce2);
+            }
+            if (Mathf.Abs(rb.velocity.x) > maxSpeed2)
+            {
+                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed2, rb.velocity.y);
+            }
+        }
     }
     
-
+    /*for continuous movement to the right
     void FixedUpdate()
     {
         float h = Input.GetAxis("Player2Right");
@@ -60,7 +62,7 @@ public class Player2 : MonoBehaviour
         {
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed2, rb.velocity.y);
         }
-    }
+    }*/
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -70,11 +72,4 @@ public class Player2 : MonoBehaviour
         }
     }
 
-        /*void OnCollisionEnter(Collision col)
-        {
-            if (col.gameObject.name == "prop_powerCube")
-            {
-                Destroy(col.gameObject);
-            }
-        }*/
-    }
+}
