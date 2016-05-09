@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainManager : MonoBehaviour {
 
     public int state;
+    private bool isWon = false;
 
     private float timerFloat;
     private float timerInt;
@@ -26,12 +27,14 @@ public class MainManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            if(player1.transform.position.x > 196.1)
+            if(player1.transform.position.x > 196.1 && isWon == false)
             {
+                isWon = true;
                 state = 1;
             }
-            if(player2.transform.position.x > 196.1)
+            if(player2.transform.position.x > 196.1 && isWon == false)
             {
+                isWon = true;
                 state = 2;
             }
         
