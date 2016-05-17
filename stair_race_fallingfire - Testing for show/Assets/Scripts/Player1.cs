@@ -33,7 +33,7 @@ public class Player1 : MonoBehaviour
                 GameObject player2 = GameObject.Find("Player2");
                 float x = player2.transform.position.x;
                 float y = player2.transform.position.y;
-                Instantiate(stairblock, new Vector3(x + 5, y + 10, 0), Quaternion.Euler(new Vector3(0, 0, 40)));
+                Instantiate(stairblock, new Vector3(x + 8, y + 10, 0), Quaternion.Euler(new Vector3(0, 0, 40)));
         }
         if (Input.GetButtonDown("Player1Right"))
         {
